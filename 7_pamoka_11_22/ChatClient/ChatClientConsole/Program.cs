@@ -19,7 +19,7 @@ namespace ChatClientConsole
             client.SendMessage("", "");
             List<Message> messages = client.GetAllMessages(20);
             */
-
+            MyChatClient manoklientas = new MyChatClient();
             string userName, userPass;
 
             Console.Write("Įveskite prisijungimo vardą: ");
@@ -27,8 +27,9 @@ namespace ChatClientConsole
 
             Console.Write("Įveskite prisijungimo slaptažodį: ");
             userPass = Console.ReadLine().Trim();
+            
 
-            if (true/* cia turi buti kodas kuris darytu prisijungima */)
+            if (manoklientas.login(userName, userPass)/* cia turi buti kodas kuris darytu prisijungima */)
             {
                 ConsoleKeyInfo userMenuInput = new ConsoleKeyInfo();
 
@@ -42,7 +43,7 @@ namespace ChatClientConsole
 
                         InputMessage(out messageRecipient, out messageText);
 
-                        if (true/* cia turi buti kodas kuris siustu zinute */)
+                        if (manoklientas.SendSmS(messageRecipient, messageText))
                         {
                             OutputMessageSent();
                         }
@@ -53,7 +54,7 @@ namespace ChatClientConsole
                     }
                     else if (userMenuInput.KeyChar == '2')
                     {
-                        string[] senders = new string[] { "Jonas", "Petras", "Bronius" }; /* cia turi buti kodas kuris uzpildytu siunteju sarasa */
+                        string[] senders = manoklientas.getusernames().ToArray(); /* cia turi buti kodas kuris uzpildytu siunteju sarasa */
 
                         OutputSenders(senders);
                     }
