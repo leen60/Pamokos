@@ -19,16 +19,25 @@ namespace CodeFights
 
             }
 
-            if(opponentsLastMove.Attacks.Contains(Area.Belly))
+            if(opponentsLastMove.Attacks.Contains(Area.Nose))
             {
-                jud.AddDefence(Area.Belly);
+                jud.AddDefence(Area.Nose).AddAttack(Area.Nose).AddAttack(Area.Jaw);
             }
+            else  if (opponentsLastMove.Attacks.Contains(Area.Legs))
+            {
+                jud.AddDefence(Area.Legs).AddAttack(Area.Nose).AddAttack(Area.Jaw);
+            }
+
+            else if (opponentsLastMove.Attacks.Contains(Area.Jaw))
+            {
+                jud.AddDefence(Area.Jaw).AddAttack(Area.Nose).AddAttack(Area.Jaw);
+            }
+     
             else
             {
-                jud.AddAttack(Area.Legs).AddAttack(Area.Belly).AddDefence(Area.Nose);
+                jud.AddAttack(Area.Nose).AddAttack(Area.Nose).AddDefence(Area.Jaw);
             }
             return jud;
-
         }
     }
 }
